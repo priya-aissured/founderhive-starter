@@ -1,0 +1,35 @@
+# FounderHive — fill this in once, then your agents are ready.
+# Every agent reads this file first to learn who you are and where your material lives.
+
+founder:
+  name: "Your Name"
+  email: "you@yourcompany.com"        # agents email drafts HERE for your approval (never elsewhere)
+  role: "Founder & CEO"
+
+timezone: "Europe/London"
+
+# Absolute path to the folder where your real company material lives (decks, plans, docs, research).
+# Agents read source docs from here on demand — nothing is copied in, so it never goes stale.
+source_folder: "/absolute/path/to/your/company/folder"
+
+# Your product(s) / venture(s). Add or remove entries.
+companies:
+  - name: "Company One"
+    oneliner: "One sentence: what it does, for whom, and why it matters."
+  - name: "Company Two"
+    oneliner: "Optional second product/venture (delete if you only have one)."
+
+# Which agents you want active (see .claude/agents/). All draft for your approval; none act externally.
+agents_enabled: [honey, jason, dawn, tarik, deap, simon, james, nora]
+
+# How agents deliver their drafts to you. Works on macOS, Windows and Linux.
+delivery:
+  method: save          # save | smtp | mail_app
+  to: "you@yourcompany.com"
+  # 'save'  -> writes the Word doc + a note into ./outbox/<date>/. Zero setup — just read the folder.
+  # 'smtp'  -> emails via any provider. Set host/port below; put SMTP_USER + SMTP_APP_PASSWORD in your
+  #            ENVIRONMENT (never in this file). Gmail/Workspace needs a 16-char app password.
+  # 'mail_app' -> macOS only: sends via the Apple Mail app already signed into your account (no password).
+  smtp_host: "smtp.gmail.com"
+  smtp_port: "587"
+  outbox: "outbox"

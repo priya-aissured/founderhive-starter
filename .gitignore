@@ -1,0 +1,26 @@
+# --- Secrets & personal config ---
+.env
+.env.*
+email.env
+*.local
+
+# --- Private data a founder fills in (share the TEMPLATES, not your filled copies) ---
+# Uncomment/keep these ignored once you start putting real data in:
+gtm/outreach-drafts/*
+!gtm/outreach-drafts/.gitkeep
+gtm/weekly-brief/*
+content/drafts/*
+customers/**/*
+reviews/*
+outbox/
+legal-finance/*
+product/*
+investor-relations/*
+# LinkedIn / prospect exports
+*connections*.csv
+*prospect*.xlsx
+
+# --- Python / OS ---
+__pycache__/
+*.pyc
+.DS_Store
