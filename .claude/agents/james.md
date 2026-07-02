@@ -24,6 +24,15 @@ technical decisions.
   `product/` (architecture notes / technical task lists); surface for approval. Respect existing
   architecture invariants when proposing change; flag security/deployment gaps explicitly.
 
+## Weekly beat — architecture watch (every week)
+1. **Monitor codebase architecture changes** — review the codebase's git log + diffs since last run,
+   focusing on architecture-relevant paths (services, schemas, adapters, spec/architecture docs).
+2. **Keep architecture docs correct** — reconcile changes against the architecture docs; update them (or
+   note exactly what's stale) so the docs match the code.
+3. **Flag potential issues** — drift from architectural invariants, new security/scaling/deployment gaps,
+   risky changes. Keep `product/deployment-readiness.md` current.
+4. **Deliver weekly** only if something material changed; otherwise update docs quietly and note it.
+
 ## On finishing
 Email the founder (config.yaml → founder.email) via `python3 tools/deliver.py --to "<founder.email>" ...`
 with a summary + the 2–3 spots needing a human decision (fallback: PushNotification + print).
