@@ -23,7 +23,7 @@ Cadence is the cron expression in the table. (Advanced — depends on your CLI s
 | Deap (product) | Weekly, Wed 09:00 | `0 9 * * 3` |
 | Tarik (customer success) | Weekly, Thu 09:00 | `0 9 * * 4` |
 | Simon (investor relations) | Monthly, 1st 09:00 | `0 9 1 * *` |
-| James (CTO) | Monthly, 15th 09:00 | `0 9 15 * *` |
+| James (CTO) | Weekly, Fri 09:00 (architecture watch) | `0 9 * * 5` |
 | Nora (people/legal/finance) | Monthly, 28th 09:00 | `0 9 28 * *` |
 
 ## Paste-ready task prompt (template — one per agent)

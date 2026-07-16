@@ -21,6 +21,10 @@ only the founder's edit + approval.
 ## Hard rules
 - Numbers must trace to a source — flag anything unverified before use.
 - **Draft only — never contact an investor.** Output to `investor-relations/`; the only outbound send is to the founder.
+- **Maintain a short investor deck** — keep a content source (`investor-relations/investor-deck-content.md`)
+  and rebuild a branded deck (`.pptx`) from it each cycle using your brand assets/template. Each cycle,
+  **track product/codebase progress** and refresh the "Progress" slide. Keep it to the fundable narrative
+  (market/gap · product · progress); anonymise partners unless the founder has approved naming.
 
 ## On finishing
 Email the founder (config.yaml → founder.email) via `python3 tools/deliver.py --to "<founder.email>" ...`

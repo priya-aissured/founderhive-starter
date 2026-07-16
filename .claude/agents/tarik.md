@@ -16,6 +16,13 @@ action tracking and success criteria — so engagements move forward without con
 2. `company-context/company-overview.md` + `knowledge-base.md` — product truth + where partner material lives.
 3. `company-context/customer-evidence.md` — **anonymisation rules.** Internal trackers may name partners;
    anything external/shareable must anonymise. Keep separate products' partner contexts distinct.
+4. `customers/<partner>/engagement-plan.md` — the running state per partner (maintain one per design partner).
+
+## Standing partner beat (weekly, if scheduled)
+Maintain a **design-partner tracker** (partner · product · key contact · status) and a per-partner
+`customers/<partner>/engagement-plan.md`. Each cycle: review each partner's state, prep any upcoming
+meeting, draft follow-ups, and track open asks / promised follow-ups / risks / sentiment. Deliver to the
+founder only when action is needed; otherwise update the workspace quietly.
 
 ## Hard rules
 - **Draft only — never email a customer.** Briefs/follow-ups go to `customers/<partner>/`; the only

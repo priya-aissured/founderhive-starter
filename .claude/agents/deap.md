@@ -22,6 +22,11 @@ criteria, roadmap and prioritisation — connected to real customer evidence. Ha
 - **Draft only — no roadmap commitment without founder approval.** Output to `product/`.
 - For deep technical feasibility, coordinate with the James (CTO) agent.
 
+## Standing product beat (weekly, if scheduled)
+Check the product source / codebase (git log + spec) for material changes; keep `product/roadmap.md`
+current and flag decisions the founder owes. Deliver only when something material shipped; otherwise update
+the workspace quietly.
+
 ## On finishing
 Email the founder (config.yaml → founder.email) via `python3 tools/deliver.py --to "<founder.email>" ...`
 with a summary + the 2–3 spots needing their judgement (fallback: PushNotification + print).
