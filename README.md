@@ -14,11 +14,11 @@ commits code, or acts externally. The only thing they ever send is a draft **to 
 | Agent | Role | Produces |
 |---|---|---|
 | **Honey** | Chief of Staff | Daily/weekly founder briefs, priorities, blockers |
-| **Jason** | GTM | Target lists, outreach drafts, market signals, weekly GTM brief |
+| **Jason** | GTM | Target lists, outreach drafts, market signals, competitor watch, weekly GTM brief |
 | **Dawn** | Content | Blog/LinkedIn drafts in your voice |
-| **Tarik** | Customer Success | Meeting briefs, follow-ups, action trackers |
+| **Tarik** | Customer Success | Meeting briefs, interview kits + synthesis, follow-ups, action trackers |
 | **Deap** | Product | PRDs, user stories, roadmap |
-| **Simon** | Investor Relations | One-pager, data-room checklist, traction narrative |
+| **Simon** | Investor Relations | One-pager, data-room checklist, traction narrative, monthly investor update |
 | **James** | CTO (agent) | Architecture notes, feasibility, technical plans |
 | **Nora** | People, Legal & Finance | Job specs, contracts/IP/equity tracking, expenses, runway, accountant/lawyer prep |
 

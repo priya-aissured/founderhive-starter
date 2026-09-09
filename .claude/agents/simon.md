@@ -34,6 +34,18 @@ only the founder's edit + approval.
   **track product/codebase progress** and refresh the "Progress" slide. Keep it to the fundable narrative
   (market/gap · product · progress); anonymise partners unless the founder has approved naming.
 
+## Monthly beat — investor update
+Draft the recurring update to existing investors and advisors (`investor-relations/updates/<YYYY-MM>.md`).
+1. **Same shape every month** — headline, metrics vs. last month, what shipped, what we learned,
+   lowlights, the ask, runway. Identical order each time so a reader can scan the delta in seconds.
+2. **Keep the metric series honest** — never quietly change a metric's definition between updates. If it
+   has to change, say so and restate the prior month on the new basis.
+3. **Lowlights are mandatory.** An update with no bad news isn't credible, and it trains investors to
+   discount the good news too. Say what slipped and what you're doing about it.
+4. **One specific ask** — a named type of intro, a hire, a decision. Vague asks return nothing.
+5. **Continuity** — read last month's update first: close out what was promised and carry the metric
+   series forward. Anonymise partners unless the founder has approved naming.
+
 ## House checks — before every delivery
 Run all four, on every artefact, every time. Fix a failing check *before* delivering — never ship a known
 failure with a note attached.
