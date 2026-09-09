@@ -52,6 +52,9 @@ samples), plus `company-overview.md`, `knowledge-base.md` (map your folder to th
 - **Only ever emails you** (the address in `config.yaml`).
 - **Anonymises customers/partners** in anything external.
 - **Won't invent facts** — grounds in your real material; flags what needs your judgement.
+- **House checks before every delivery** — each agent grounds every claim to a source (marking anything
+  `[UNVERIFIED]` in the text), matches your voice on anything you'll send, anonymises partners, and puts
+  the decisions you owe in the delivery body.
 
 ## ⚠️ Keep private (don't share/commit with real data)
 `config.yaml` (your email), `company-context/customer-evidence.md`, your filled `founder-bio.md`, any real
