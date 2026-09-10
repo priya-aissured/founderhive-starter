@@ -24,7 +24,11 @@ Cadence is the cron expression in the table. (Advanced — depends on your CLI s
 | Tarik (customer success) | Weekly, Thu 09:00 | `0 9 * * 4` |
 | Simon (investor relations) | Monthly, 1st 09:00 | `0 9 1 * *` |
 | James (CTO) | Weekly, Fri 09:00 (architecture watch) | `0 9 * * 5` |
+| Nora (bookkeeping beat) | Weekly, Fri 17:00 | `0 17 * * 5` |
 | Nora (people/legal/finance) | Monthly, 28th 09:00 | `0 9 28 * *` |
+
+> Where an agent has **two cadences** (Nora: weekly bookkeeping + monthly people/legal/finance), name the
+> beat in the task prompt — otherwise the weekly run will also do the monthly work.
 
 ## Paste-ready task prompt (template — one per agent)
 Replace `{PROJECT_DIR}` and `{AGENT}` (honey/jason/dawn/tarik/deap/simon/james/nora):

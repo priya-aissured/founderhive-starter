@@ -20,7 +20,7 @@ commits code, or acts externally. The only thing they ever send is a draft **to 
 | **Deap** | Product | PRDs, user stories, roadmap |
 | **Simon** | Investor Relations | One-pager, data-room checklist, traction narrative, monthly investor update |
 | **James** | CTO (agent) | Architecture notes, feasibility, technical plans |
-| **Nora** | People, Legal & Finance | Job specs, contracts/IP/equity tracking, expenses, runway, accountant/lawyer prep |
+| **Nora** | People, Legal & Finance | Job specs, contracts/IP/equity tracking, weekly bookkeeping, runway, accountant/lawyer prep |
 
 ## Setup — the easy way
 1. **Prereqs:** Claude Code + Python 3.11+. Install helpers: `pip install -r requirements.txt`.
