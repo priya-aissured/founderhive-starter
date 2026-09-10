@@ -15,7 +15,7 @@
 ## Product & engineering
 | Source | What's in it | Primary agents |
 |---|---|---|
-| e.g. `Requirements/`, `Architecture/`, the codebase | product/technical truth | Suraj, James |
+| e.g. `Requirements/`, `Architecture/`, the codebase | product/technical truth | Deap, James |
 
 ## GTM, customers & investors
 | Source | What's in it | Primary agents |
