@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# FounderHive · created by Priya Lakshmi (AISSURED) · https://github.com/priya-aissured/founderhive-starter · MIT
 """Send an email (with optional attachment) via the macOS Mail app — NO password stored.
 
 Drives Apple Mail (already signed into your account) through AppleScript. FounderHive agents use this to

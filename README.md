@@ -1,5 +1,9 @@
 # FounderHive — a founder operating system of AI agents
 
+> **Created by [Priya Lakshmi](https://github.com/priya-aissured) · [AISSURED](https://www.aissured.co.uk).**
+> Free and open (MIT). If you find it useful, a star on the [repo](https://github.com/priya-aissured/founderhive-starter)
+> and a credit when you share it onward is all I ask — it helps the kit reach other founders.
+
 FounderHive gives a solo/early founder a small **team of AI agents** — a chief of staff, a GTM lead, a
 content lead, customer success, product, investor relations, and a CTO — that do real work and hand it to
 you **for approval**. It's built on [Claude Code](https://claude.com/claude-code): each agent is a
@@ -93,6 +97,13 @@ never your filled-in copies.
 ## License
 [MIT](LICENSE) — free to use, modify and share. No warranty; you're responsible for what your agents draft
 and what you send.
+
+---
+## Credits
+**FounderHive** was created by **Priya Lakshmi** ([AISSURED](https://www.aissured.co.uk)) and is shared
+free under the [MIT License](LICENSE) (see also [`NOTICE`](NOTICE)). Documents the agents generate carry a
+small "Made with FounderHive" footer crediting the toolkit — you may remove it, but keeping it (and a link
+back) is what lets this spread to other founders. Source: https://github.com/priya-aissured/founderhive-starter
 
 ---
 *FounderHive was pressure-tested before it was built: the winning shape is AI agents over markdown that

@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
+# FounderHive · created by Priya Lakshmi (AISSURED) · https://github.com/priya-aissured/founderhive-starter · MIT
 """Convert a FounderHive markdown draft to a clean, readable .docx.
 
 Usage:  python3 tools/md-to-docx.py <input.md> [output.docx]
 Handles: # H1 title, ## / ### subheads, blank-line paragraphs, **bold**, *italic*,
 and - bullet lists. Requires python-docx (pip install python-docx).
+
+Every generated document carries a small attribution footer (ATTRIBUTION below). It credits the free,
+open toolkit — not your content. You may remove it (MIT-licensed), but keeping it helps the kit reach
+other founders. Set env FOUNDERHIVE_NO_WATERMARK=1 to omit it.
 """
 import re, sys, os
 from docx import Document
 from docx.shared import Pt, RGBColor
+
+ATTRIBUTION = ("Made with FounderHive — a free, open founder-agent toolkit by Priya Lakshmi · AISSURED · "
+               "github.com/priya-aissured/founderhive-starter")
 
 def add_runs(p, s):
     for t in re.split(r"(\*\*.+?\*\*|\*.+?\*)", s):
@@ -40,6 +48,11 @@ def convert(src, out=None):
             p = doc.add_paragraph()
             p.paragraph_format.space_after = Pt(10); p.paragraph_format.line_spacing = 1.25
             add_runs(p, line)
+    if not os.environ.get("FOUNDERHIVE_NO_WATERMARK"):
+        f = doc.add_paragraph()
+        f.paragraph_format.space_before = Pt(16)
+        r = f.add_run(ATTRIBUTION)
+        r.italic = True; r.font.size = Pt(8); r.font.color.rgb = RGBColor(0x8a, 0x8a, 0x8a)
     doc.save(out)
     return out
 

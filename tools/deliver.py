@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# FounderHive · created by Priya Lakshmi (AISSURED) · https://github.com/priya-aissured/founderhive-starter · MIT
 """Convert markdown draft(s) to Word (.docx) and deliver them to the founder — cross-platform.
 
 Every FounderHive agent uses this so emails/outputs are readable .docx (not raw .md). Delivery method is

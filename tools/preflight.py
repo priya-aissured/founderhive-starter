@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# FounderHive · created by Priya Lakshmi (AISSURED) · https://github.com/priya-aissured/founderhive-starter · MIT
 """Preflight check — is FounderHive set up enough to run agents?
 
 Verifies config.yaml is filled (not placeholders), the source_folder exists, and the key context files
