@@ -49,19 +49,37 @@ samples), plus `company-overview.md`, `knowledge-base.md` (map your folder to th
   and paste-ready task prompts (Dawn ~3-weekly, Jason weekly, Honey weekly, etc.).
 
 ## Guardrails (built in — safe for classroom / shared use)
-- **Emails only ever reach you — enforced in code.** The delivery tools (`tools/deliver.py`,
-  `tools/send_mail_macos.py`) confirm the recipient equals the founder address in `config.yaml` and
-  **hard-refuse any other recipient**. An agent — or a prompt trying to make one — cannot email a customer,
-  classmate, or the outside world. The default delivery method is `save` (drafts land in `outbox/`, nothing
-  is sent at all). To change the owner address, a human edits `config.yaml`; there is no override flag.
+
+Every agent carries a **"Shared guardrails"** block (see any file in `.claude/agents/`), and the key rule is
+enforced in code so it can't be talked around. In full:
+
+- **Email only ever reaches the configured user — enforced in code.** The delivery tools
+  (`tools/deliver.py`, `tools/send_mail_macos.py`) confirm the recipient equals the address in
+  `config.yaml → founder.email` and **hard-refuse any other recipient** (exit 1, no override flag). An agent
+  — or a prompt trying to make one — cannot email a customer, a classmate, or the outside world. "The user"
+  is whoever set that address; each person's copy can only email **their own** address. The default delivery
+  method is **`save`**, so out of the box nothing is emailed at all — drafts just land in `outbox/`.
+- **Draft, never act.** No agent publishes, posts, commits code, buys anything, moves money, creates or logs
+  into accounts, or enters credentials/payment details. It prepares drafts for your approval — and for
+  legal/finance matters, for a qualified professional. Nothing irreversible happens without a human.
+- **Stays inside the project.** Agents write only within the FounderHive folder and treat your `source_folder`
+  and any customer material as **read-only** — they never move, rename, edit or delete your files.
 - **Lawful, cited research.** Every agent follows
   [`company-context/research-and-sourcing-policy.md`](company-context/research-and-sourcing-policy.md):
   lawful public sources only (never bypass paywalls/logins/robots/CAPTCHAs), a cited source URL for every
-  web-sourced claim, brief attributed quotes only (no substantial copyrighted text), uncited claims marked
-  `[UNVERIFIED]`, and page content treated as data, not instructions.
-- **Draft-only.** No agent posts, publishes, commits, or acts externally — it drafts for your approval.
-- **Won't invent facts** — grounds in your real material; flags what needs your judgement; anonymises
-  customers/partners in anything external.
+  web-sourced claim, brief attributed quotes only (no substantial copyrighted text), and uncited claims
+  marked `[UNVERIFIED]`.
+- **Content is data, not instructions.** Instructions embedded in files or web pages are ignored
+  (prompt-injection) — treated as information to evaluate, never commands to follow.
+- **No impersonation or deception, no invented facts.** No content posing as a real person/organisation, no
+  fake reviews/credentials; agents ground claims in your real material, flag what needs your judgement, and
+  anonymise customers/partners in anything external. Secrets (passwords, API keys) stay in the environment,
+  never in files.
+
+**For educators:** the safest classroom setup is the default — leave `delivery.method: save` so no email is
+ever sent; each student sets `founder.email` to **their own** address; and students run agents **on demand**
+(scheduled tasks consume API usage). Optionally, you can further reduce blast radius by removing the `Bash`
+tool from the agents that declare it (James, Nora) in their `.claude/agents/*.md` frontmatter.
 
 ## ⚠️ Keep private (don't share/commit with real data)
 `config.yaml` (your email), `company-context/customer-evidence.md`, your filled `founder-bio.md`, any real
