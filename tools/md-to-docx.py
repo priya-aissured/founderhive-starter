@@ -15,7 +15,7 @@ from docx import Document
 from docx.shared import Pt, RGBColor
 
 ATTRIBUTION = ("Made with FounderHive — a free, open founder-agent toolkit by Priya Lakshmi · AISSURED · "
-               "github.com/priya-aissured/founderhive-starter")
+               "aissured.co.uk · github.com/priya-aissured/founderhive-starter")
 
 def add_runs(p, s):
     for t in re.split(r"(\*\*.+?\*\*|\*.+?\*)", s):
