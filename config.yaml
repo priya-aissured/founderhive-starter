@@ -20,7 +20,7 @@ companies:
     oneliner: "Optional second product/venture (delete if you only have one)."
 
 # Which agents you want active (see .claude/agents/). All draft for your approval; none act externally.
-agents_enabled: [honey, jason, dawn, tarik, deap, simon, james, nora]
+agents_enabled: [honey, jason, dawn, tarik, deap, simon, james, nora, max]
 
 # How agents deliver their drafts to you. Works on macOS, Windows and Linux.
 delivery:

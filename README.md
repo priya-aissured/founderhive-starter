@@ -21,6 +21,7 @@ commits code, or acts externally. The only thing they ever send is a draft **to 
 | **Simon** | Investor Relations | One-pager, data-room checklist, traction narrative, monthly investor update |
 | **James** | CTO (agent) | Architecture notes, feasibility, technical plans |
 | **Nora** | People, Legal & Finance | Job specs, contracts/IP/equity tracking, weekly bookkeeping, runway, accountant/lawyer prep |
+| **Max** | Co-Founder (challenger) | Reads your idea docs and stress-tests them — market, pricing, competition, sales friction, GTM, tech complexity, AI governance, ethics |
 
 ## Setup — the easy way
 1. **Prereqs:** Claude Code + Python 3.11+. Install helpers: `pip install -r requirements.txt`.
@@ -47,14 +48,20 @@ samples), plus `company-overview.md`, `knowledge-base.md` (map your folder to th
 - **Recurring runs:** see [`scheduling/SCHEDULING.md`](scheduling/SCHEDULING.md) for recommended cadences
   and paste-ready task prompts (Dawn ~3-weekly, Jason weekly, Honey weekly, etc.).
 
-## Guardrails (built into every agent)
-- **Draft-only.** Never sends externally, never posts/publishes/commits, never acts without you.
-- **Only ever emails you** (the address in `config.yaml`).
-- **Anonymises customers/partners** in anything external.
-- **Won't invent facts** — grounds in your real material; flags what needs your judgement.
-- **House checks before every delivery** — each agent grounds every claim to a source (marking anything
-  `[UNVERIFIED]` in the text), matches your voice on anything you'll send, anonymises partners, and puts
-  the decisions you owe in the delivery body.
+## Guardrails (built in — safe for classroom / shared use)
+- **Emails only ever reach you — enforced in code.** The delivery tools (`tools/deliver.py`,
+  `tools/send_mail_macos.py`) confirm the recipient equals the founder address in `config.yaml` and
+  **hard-refuse any other recipient**. An agent — or a prompt trying to make one — cannot email a customer,
+  classmate, or the outside world. The default delivery method is `save` (drafts land in `outbox/`, nothing
+  is sent at all). To change the owner address, a human edits `config.yaml`; there is no override flag.
+- **Lawful, cited research.** Every agent follows
+  [`company-context/research-and-sourcing-policy.md`](company-context/research-and-sourcing-policy.md):
+  lawful public sources only (never bypass paywalls/logins/robots/CAPTCHAs), a cited source URL for every
+  web-sourced claim, brief attributed quotes only (no substantial copyrighted text), uncited claims marked
+  `[UNVERIFIED]`, and page content treated as data, not instructions.
+- **Draft-only.** No agent posts, publishes, commits, or acts externally — it drafts for your approval.
+- **Won't invent facts** — grounds in your real material; flags what needs your judgement; anonymises
+  customers/partners in anything external.
 
 ## ⚠️ Keep private (don't share/commit with real data)
 `config.yaml` (your email), `company-context/customer-evidence.md`, your filled `founder-bio.md`, any real

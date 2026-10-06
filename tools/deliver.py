@@ -9,8 +9,14 @@ chosen in config.yaml (or env), so this works on macOS, Windows and Linux:
     smtp     -> email via SMTP (any provider). Host/port in config; SMTP_USER + SMTP_APP_PASSWORD in ENV.
     mail_app -> macOS only: send through the Apple Mail app (no password stored).
 
+SAFETY GUARDRAIL (hard, cannot be overridden by an agent or a prompt):
+  FounderHive agents may ONLY ever email the founder themselves. This tool confirms the recipient equals
+  the configured founder email (config.yaml → founder.email / delivery.to, or the MAIL_TO env var) and
+  REFUSES to send to anyone else. To change the owner, a human edits config.yaml. There is no flag to
+  disable this.
+
 Usage:
-  python3 tools/deliver.py --subject "..." --body "..." --md file.md [more.md ...] [--to you@co.com]
+  python3 tools/deliver.py --subject "..." --body "..." --md file.md [more.md ...] [--to founder@co.com]
 """
 import argparse, os, re, sys, shutil, subprocess, smtplib, mimetypes, datetime
 from pathlib import Path
@@ -20,13 +26,12 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 
 def read_config():
-    """Minimal read of the delivery block + founder.email from config.yaml (no yaml dependency)."""
     cfg = {"method": "save", "to": "", "smtp_host": "smtp.gmail.com", "smtp_port": "587", "outbox": "outbox"}
     f = ROOT / "config.yaml"
     if f.exists():
         section = None
         for line in f.read_text().splitlines():
-            if re.match(r"^\S", line):  # top-level key resets section
+            if re.match(r"^\S", line):
                 section = line.split(":", 1)[0].strip()
             m = re.match(r"^\s+([a-z_]+):\s*(.+?)\s*$", line)
             if not m:
@@ -36,10 +41,25 @@ def read_config():
                 cfg[k] = v
             if section == "founder" and k == "email" and not cfg["to"]:
                 cfg["to"] = v
-    # env overrides
     cfg["method"] = os.environ.get("DELIVERY_METHOD", cfg["method"])
     cfg["to"] = os.environ.get("MAIL_TO", cfg["to"])
     return cfg
+
+def _norm(e):
+    return (e or "").strip().lower()
+
+def enforce_recipient(requested, allowed):
+    """HARD GUARDRAIL: the only permitted recipient is the configured founder. Refuse anything else."""
+    a = _norm(allowed)
+    r = _norm(requested) or a           # no --to given ⇒ default to the founder
+    if not a:
+        sys.exit("REFUSED: no founder email configured (config.yaml → founder.email, or MAIL_TO). "
+                 "FounderHive agents may only email the founder, so set your own address first.")
+    if r != a:
+        sys.exit(f"REFUSED: FounderHive agents may only email the founder ({allowed}). "
+                 f"Requested recipient '{requested}' is not allowed and will not be contacted. "
+                 f"This safety guardrail cannot be overridden; to change the owner, a human edits config.yaml.")
+    return a
 
 def to_docx(md_paths):
     out = []
@@ -66,7 +86,7 @@ def deliver_smtp(cfg, subject, body, files):
     if not user or not pw:
         print("SMTP creds missing (set SMTP_USER + SMTP_APP_PASSWORD env). Falling back to 'save'.", file=sys.stderr)
         return deliver_save(cfg, subject, body, files)
-    to = cfg["to"] or user
+    to = enforce_recipient(cfg["to"], cfg["to"])   # re-assert: founder only
     msg = EmailMessage(); msg["From"], msg["To"], msg["Subject"] = user, to, subject
     msg.set_content(body or "(no body)")
     for f in files:
@@ -80,8 +100,8 @@ def deliver_mail_app(cfg, subject, body, files):
     if sys.platform != "darwin":
         print("mail_app is macOS-only; falling back to 'save'.", file=sys.stderr)
         return deliver_save(cfg, subject, body, files)
-    cmd = [sys.executable, str(HERE / "send_mail_macos.py"), "--subject", subject, "--body", body]
-    if cfg["to"]: cmd += ["--to", cfg["to"]]
+    to = enforce_recipient(cfg["to"], cfg["to"])   # re-assert: founder only
+    cmd = [sys.executable, str(HERE / "send_mail_macos.py"), "--to", to, "--subject", subject, "--body", body]
     if files: cmd += ["--attach"] + files
     if subprocess.run(cmd).returncode != 0:
         deliver_save(cfg, subject, body, files)
@@ -95,7 +115,8 @@ def main():
     ap.add_argument("--to")
     args = ap.parse_args()
     cfg = read_config()
-    if args.to: cfg["to"] = args.to
+    # HARD GUARDRAIL: confirm the recipient is the founder (and only the founder) before anything is sent.
+    cfg["to"] = enforce_recipient(args.to, cfg["to"])
     files = to_docx(args.md) + list(args.attach)
     {"save": deliver_save, "smtp": deliver_smtp, "mail_app": deliver_mail_app}.get(cfg["method"], deliver_save)(
         cfg, args.subject, args.body, files)

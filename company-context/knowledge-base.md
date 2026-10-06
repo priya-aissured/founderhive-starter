@@ -29,4 +29,5 @@
 | e.g. `Blogs/`, `LinkedIn/`, talks | your published writing = your VOICE | Dawn |
 
 ## Role → start here
-Give each agent (Honey, Jason, Dawn, Tarik, Deap, Simon, James, Nora) a short "start with these folders" line.
+Give each agent (Honey, Jason, Dawn, Tarik, Deap, Simon, James, Nora, Max) a short "start with these folders" line.
+(Max, the Co-Founder challenger, reads your idea / strategy / product docs + any market/competitor research.)

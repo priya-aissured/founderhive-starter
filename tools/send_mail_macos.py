@@ -5,14 +5,37 @@ Drives Apple Mail (already signed into your account) through AppleScript. Founde
 deliver drafts to you for approval. First run triggers a one-time macOS prompt: "<app> wants to control
 Mail" → click OK. Requires Mail.app configured with an account that can send as the From address.
 
-Recipient: pass --to, or set the MAIL_TO environment variable (put your address there, matching
-config.yaml founder.email). There is no hardcoded recipient.
+SAFETY GUARDRAIL (hard): will ONLY send to the configured founder (config.yaml → founder.email /
+delivery.to, or the MAIL_TO env var). Any other recipient is refused. This mirrors the check in deliver.py
+so the rule holds even if this script is called directly.
 
 Usage:
-  python3 tools/send_mail_macos.py --to you@co.com --subject "..." --body "..." [--attach f.docx ...]
+  python3 tools/send_mail_macos.py --to founder@co.com --subject "..." --body "..." [--attach f.docx ...]
 """
-import argparse, subprocess, sys, tempfile, os
+import argparse, subprocess, sys, tempfile, os, re
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+
+def founder_email():
+    """Resolve the one permitted recipient: MAIL_TO env, else config.yaml delivery.to / founder.email."""
+    if os.environ.get("MAIL_TO"):
+        return os.environ["MAIL_TO"]
+    f = ROOT / "config.yaml"
+    to, section = "", None
+    if f.exists():
+        for line in f.read_text().splitlines():
+            if re.match(r"^\S", line):
+                section = line.split(":", 1)[0].strip()
+            m = re.match(r"^\s+([a-z_]+):\s*(.+?)\s*$", line)
+            if not m:
+                continue
+            k, v = m.group(1), m.group(2).strip().strip('"').strip("'")
+            if section == "delivery" and k == "to" and v:
+                return v
+            if section == "founder" and k == "email" and not to:
+                to = v
+    return to
 
 APPLESCRIPT = r'''
 on run argv
@@ -47,16 +70,22 @@ end run
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--to", default=os.environ.get("MAIL_TO", ""),
-                    help="recipient (or set MAIL_TO env). Should match config.yaml founder.email.")
+    ap.add_argument("--to", default="")
     ap.add_argument("--from", dest="from_addr", default=os.environ.get("MAIL_FROM", ""))
     ap.add_argument("--subject", required=True)
     ap.add_argument("--body")
-    ap.add_argument("--attach", nargs="*", default=[])
+    ap.add_argument("--attach", nargs="*", action="extend", default=[])
     args = ap.parse_args()
 
-    if not args.to:
-        sys.exit("ERROR: no recipient. Pass --to you@yourcompany.com or set MAIL_TO. (See config.yaml founder.email.)")
+    allowed = founder_email()
+    if not allowed:
+        sys.exit("REFUSED: no founder email configured (config.yaml → founder.email, or MAIL_TO). "
+                 "This tool only emails the founder, so set your own address first.")
+    requested = (args.to or allowed).strip()
+    if requested.lower() != allowed.strip().lower():
+        sys.exit(f"REFUSED: may only email the founder ({allowed}); '{args.to}' is not allowed. "
+                 f"This guardrail cannot be overridden.")
+    to = allowed
 
     body = args.body if args.body is not None else (sys.stdin.read() if not sys.stdin.isatty() else "")
     attachments = []
@@ -71,7 +100,7 @@ def main():
         tf.write(APPLESCRIPT)
         script_path = tf.name
     try:
-        argv = ["osascript", script_path, args.to, args.from_addr, args.subject, body] + attachments
+        argv = ["osascript", script_path, to, args.from_addr, args.subject, body] + attachments
         res = subprocess.run(argv, capture_output=True, text=True)
     finally:
         os.unlink(script_path)
@@ -80,7 +109,7 @@ def main():
         sys.exit("ERROR sending via Mail.app: " + ((res.stderr or "").strip() or "unknown error") +
                  "\n(First run? Allow automation control of Mail in the macOS prompt / System Settings → "
                  "Privacy & Security → Automation, then retry.)")
-    print(f"sent: '{args.subject}' -> {args.to}" + (f" ({len(attachments)} attachment(s))" if attachments else ""))
+    print(f"sent: '{args.subject}' -> {to}" + (f" ({len(attachments)} attachment(s))" if attachments else ""))
 
 if __name__ == "__main__":
     main()
