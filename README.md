@@ -9,6 +9,8 @@ content lead, customer success, product, investor relations, and a CTO — that 
 you **for approval**. It's built on [Claude Code](https://claude.com/claude-code): each agent is a
 markdown definition; your company knowledge is markdown + your existing files; nothing is a black box.
 
+![FounderHive — a safe AI founder workforce on Claude Code: you ask, nine agents draft, you approve. Guardrails: emails only you (enforced in code), draft-only, no shell access, lawful cited sources, saves locally by default.](assets/founderhive-overview.png)
+
 **The core idea:** proactive founder work (thought leadership, pipeline, investor prep) always loses to
 whatever's urgent. The agents *collapse the activation energy* — they produce the 80% draft so the only
 thing left is your quick edit. **They draft; you decide.** No agent sends an email, posts, publishes,
