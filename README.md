@@ -27,8 +27,22 @@ commits code, or acts externally. The only thing they ever send is a draft **to 
 | **Nora** | People, Legal & Finance | Job specs, contracts/IP/equity tracking, weekly bookkeeping, runway, accountant/lawyer prep |
 | **Max** | Co-Founder (challenger) | Reads your idea docs and stress-tests them — market, pricing, competition, sales friction, GTM, tech complexity, AI governance, ethics |
 
+## Requirements
+FounderHive is built **for Claude Code** — either the **Claude Code CLI** (terminal) or the **Claude
+desktop app's "Code" tab**. Both use the same agent system. You'll need:
+- **A Claude plan that includes Claude Code** (Pro/Max, or API usage) — it isn't free to run.
+- **Python 3.11+** (for the small helper tools). `pip install -r requirements.txt`.
+- Any OS for the default `save` delivery (drafts land in `outbox/`). The **email** option is macOS-only
+  (Apple Mail) unless you use the SMTP method in `config.yaml`.
+- Recurring/scheduled runs use the desktop app's Scheduled tasks (CLI users can use `cron`); on-demand use
+  works in either.
+
+> The agent definitions (`.claude/agents/`), tools and policies are plain markdown/YAML/Python — portable
+> enough to adapt elsewhere — but the plug-and-play experience and the code-enforced guardrails are
+> designed for Claude Code.
+
 ## Setup — the easy way
-1. **Prereqs:** Claude Code + Python 3.11+. Install helpers: `pip install -r requirements.txt`.
+1. **Prereqs:** Claude Code (CLI or desktop) + Python 3.11+. Install helpers: `pip install -r requirements.txt`.
 2. **Run the setup agent** — open Claude Code in this folder and say *"Use the setup agent."* It interviews
    you and fills `config.yaml` + `company-context/*` (and GTM basics), reading your company folder to map
    material. That's the whole setup, guided.
