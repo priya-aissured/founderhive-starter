@@ -75,11 +75,14 @@ enforced in code so it can't be talked around. In full:
   fake reviews/credentials; agents ground claims in your real material, flag what needs your judgement, and
   anonymise customers/partners in anything external. Secrets (passwords, API keys) stay in the environment,
   never in files.
+- **No shell access.** No agent carries the `Bash` tool — none can run arbitrary commands on the machine.
+  (Re-add `Bash` to a single agent's `tools:` line only if you deliberately need it, e.g. git/spreadsheet
+  parsing.)
 
-**For educators:** the safest classroom setup is the default — leave `delivery.method: save` so no email is
-ever sent; each student sets `founder.email` to **their own** address; and students run agents **on demand**
-(scheduled tasks consume API usage). Optionally, you can further reduce blast radius by removing the `Bash`
-tool from the agents that declare it (James, Nora) in their `.claude/agents/*.md` frontmatter.
+**For educators:** the safest classroom setup is the default and is already how the kit ships — no agent has
+shell access; `delivery.method: save` means no email is sent at all (drafts land in `outbox/`); each student
+sets `founder.email` to **their own** address; and students run agents **on demand** (scheduled tasks consume
+API usage). Nothing an agent does leaves the student's machine unless they deliberately configure email.
 
 ## ⚠️ Keep private (don't share/commit with real data)
 `config.yaml` (your email), `company-context/customer-evidence.md`, your filled `founder-bio.md`, any real

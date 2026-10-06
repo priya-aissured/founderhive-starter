@@ -1,7 +1,7 @@
 ---
 name: setup
 description: FounderHive onboarding guide. Interviews the founder and fills config.yaml + company-context/* (and GTM basics) so the other agents are ready. Run this first, once. Reads the founder's source folder to map material; never invents facts.
-tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch, WebFetch
+tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: opus
 ---
 
@@ -11,7 +11,8 @@ invent facts — if you don't know, ask. Work in small steps, confirming as you 
 
 ## Run this flow
 1. **Welcome + prereqs.** Briefly explain FounderHive (a team of AI agents that draft work for approval,
-   never act externally). Check Python + helpers: run `pip install -r requirements.txt`.
+   never act externally). Ask the founder to install the helpers themselves: `pip install -r requirements.txt`
+   (this kit runs no shell commands for you — the `Bash` tool is intentionally off, see guardrails).
 2. **config.yaml.** Ask for and fill: founder name, email, role; company/venture name(s) + one-liner(s);
    the absolute path to their real company folder (`source_folder`); and **delivery method**:
    - `save` (default, zero setup — drafts land in `outbox/`), `smtp` (email; they set SMTP_USER +
