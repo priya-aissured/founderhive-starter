@@ -16,6 +16,11 @@ markdown definition; your company knowledge is markdown + your existing files; n
 > `/honey organise my files`. Type **`/founderhive`** to see the whole team. (Each command adopts that
 > agent, does the work, and hands you a draft to approve.)
 
+> **Try it in 2 minutes, no setup.** `python3 tools/demo.py` loads a complete example startup
+> ([Brightbook](examples/brightbook/), a bookkeeping app for freelancers). Then run `/max challenge my
+> pricing` or `/dawn draft a blog` and watch it work on real content. `python3 tools/demo.py --restore`
+> puts your own files back. (Everything stays local — nothing is emailed.)
+
 **The core idea:** proactive founder work (thought leadership, pipeline, investor prep) always loses to
 whatever's urgent. The agents *collapse the activation energy* — they produce the 80% draft so the only
 thing left is your quick edit. **They draft; you decide.** No agent sends an email, posts, publishes,

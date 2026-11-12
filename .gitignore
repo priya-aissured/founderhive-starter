@@ -27,3 +27,4 @@ __pycache__/
 company-context/file-inventory.csv
 company-context/file-map.md
 company-context/proposed-move-plan.sh
+examples/.active-backup/

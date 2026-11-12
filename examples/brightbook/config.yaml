@@ -1,0 +1,23 @@
+# FounderHive · created by Priya Lakshmi (AISSURED) · https://github.com/priya-aissured/founderhive-starter · MIT
+# EXAMPLE COMPANY — "Brightbook". Loaded by `python3 tools/demo.py` so you can try FounderHive instantly.
+
+founder:
+  name: "Sam Rivera"
+  email: "sam@brightbook.example"     # demo address — delivery is 'save', so no email is ever sent
+  role: "Founder & CEO"
+
+timezone: "Europe/London"
+source_folder: "examples/brightbook/source"
+
+companies:
+  - name: "Brightbook"
+    oneliner: "Tidy books for freelancers — Brightbook sorts your expenses, chases your invoices, and gets you tax-ready in minutes a month."
+
+agents_enabled: [honey, jason, dawn, tarik, deap, simon, james, nora, max]
+
+delivery:
+  method: save          # demo stays fully local — drafts land in outbox/, nothing is emailed
+  to: "sam@brightbook.example"
+  smtp_host: "smtp.gmail.com"
+  smtp_port: "587"
+  outbox: "outbox"
