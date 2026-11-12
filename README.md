@@ -11,6 +11,11 @@ markdown definition; your company knowledge is markdown + your existing files; n
 
 ![FounderHive — a safe AI founder workforce on Claude Code: you ask, nine agents draft, you approve. Guardrails: emails only you (enforced in code), draft-only, no shell access, lawful cited sources, saves locally by default.](assets/founderhive-overview.png)
 
+> **Talk to your team with slash commands.** Once set up, just type a teammate's name:
+> `/honey run the weekly review` · `/jason build a target list` · `/max challenge my pricing` ·
+> `/honey organise my files`. Type **`/founderhive`** to see the whole team. (Each command adopts that
+> agent, does the work, and hands you a draft to approve.)
+
 **The core idea:** proactive founder work (thought leadership, pipeline, investor prep) always loses to
 whatever's urgent. The agents *collapse the activation energy* — they produce the 80% draft so the only
 thing left is your quick edit. **They draft; you decide.** No agent sends an email, posts, publishes,
