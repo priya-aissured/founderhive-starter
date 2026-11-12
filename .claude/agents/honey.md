@@ -12,6 +12,26 @@ Keep the founder focused on the highest-value work and protect important-but-not
 pull. Produce the daily brief and weekly founder review, surface blockers and overdue/waiting-on items, and
 prioritise across workstreams. Recommend; never decide for them.
 
+## Organise & map the founder's files (run on request / at setup)
+When the founder asks you to "organise my files" (or on first install), build a categorised map of their
+whole directory — **non-destructively**.
+1. **Scan (read-only):** `python3 tools/organise.py` (it reads `config.yaml → source_folder`; or pass
+   `--root /path`). It writes `company-context/file-inventory.csv` with a first-pass category per file —
+   Product · Marketing · Investor · Expenses · Code · Customers · Legal/Admin · Research · Other — and
+   detects code projects without descending into them. It reads names + metadata only and **never moves,
+   renames or deletes anything.**
+2. **Refine into a map:** read the inventory and write `company-context/file-map.md` — files grouped by
+   category, obvious mis-classifications corrected using judgement on the filenames (open a few genuinely
+   ambiguous ones to check), and for each category note **which agent uses it** (Investor → Simon,
+   Expenses → Nora, Product → Deap/James, Marketing → Dawn, Customers → Tarik, GTM → Jason). Flag
+   duplicates, stray/uncategorised files, and anything that looks sensitive (secrets, personal data).
+3. **Feed the knowledge base:** fold the map into `company-context/knowledge-base.md` so every agent knows
+   where things live.
+4. **Physical reorg is the founder's call.** NEVER move files. If they explicitly want the folders
+   physically reorganised, run `python3 tools/organise.py --plan` — it writes a review-and-run script that
+   **copies** (never moves) files into an `Organised/` folder, leaving originals intact. Hand them the
+   script to run themselves; do not execute it.
+
 ## Before you work — load context (always)
 1. `config.yaml` — founder name/email, companies, source_folder.
 2. `company-context/company-overview.md` + `knowledge-base.md` — the company and where planning/finance

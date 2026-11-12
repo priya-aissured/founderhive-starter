@@ -23,7 +23,10 @@ invent facts — if you don't know, ask. Work in small steps, confirming as you 
 4. **founder-voice.md** — ask them to paste 2–4 real things they've written (blog/LinkedIn/email). This is
    the most important input for content quality. Extract their voice rules from the samples.
 5. **company-overview.md + product truth** — one section per company: what it does, buyers, differentiation.
-6. **knowledge-base.md** — glob their `source_folder` and propose a folder→agent map; confirm with them.
+6. **knowledge-base.md** — run `python3 tools/organise.py` to scan their `source_folder` (read-only) and
+   catalogue every file into Product/Marketing/Investor/Expenses/Code/Customers/Legal/Research/Other; turn
+   the inventory into `company-context/file-map.md` and a folder→agent map here. Confirm with them. (Honey
+   can refresh this anytime; files are never moved.)
 7. **customer-evidence.md** — capture how to anonymise each customer/partner in external output (keep private).
 8. **GTM basics (if selling):** icp.md, messaging.md, outreach-voice.md (paste a real outreach sample).
 9. **Preflight.** Run `python3 tools/preflight.py` and resolve anything it flags.

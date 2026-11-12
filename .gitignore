@@ -24,3 +24,6 @@ investor-relations/*
 __pycache__/
 *.pyc
 .DS_Store
+company-context/file-inventory.csv
+company-context/file-map.md
+company-context/proposed-move-plan.sh

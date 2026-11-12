@@ -19,7 +19,7 @@ commits code, or acts externally. The only thing they ever send is a draft **to 
 ## The agents (`.claude/agents/`)
 | Agent | Role | Produces |
 |---|---|---|
-| **Honey** | Chief of Staff | Daily/weekly founder briefs, priorities, blockers |
+| **Honey** | Chief of Staff | Daily/weekly founder briefs, priorities, blockers; **organises your whole folder** into Product/Marketing/Investor/Expenses/Code/Customers/… (read-only — never moves your files) |
 | **Jason** | GTM | Target lists, outreach drafts, market signals, competitor watch, weekly GTM brief |
 | **Dawn** | Content | Blog/LinkedIn drafts in your voice |
 | **Tarik** | Customer Success | Meeting briefs, interview kits + synthesis, follow-ups, action trackers |
@@ -63,7 +63,8 @@ samples), plus `company-overview.md`, `knowledge-base.md` (map your folder to th
 - **`mail_app`** (macOS only): sends via the Apple Mail app already signed in — no password stored.
 
 ## Using it
-- Ask, e.g. *"Use the Dawn agent to draft a blog on X"* or *"Use Jason to build a target list for segment Y."*
+- Ask, e.g. *"Use the Dawn agent to draft a blog on X"*, *"Use Jason to build a target list for segment Y"*,
+  or *"Use Honey to organise my files"* (scans your whole folder and maps it into categories — read-only).
   The agent reads `config.yaml` + `company-context/`, drafts, converts to **Word (.docx)**, and delivers it.
 - **Recurring runs:** see [`scheduling/SCHEDULING.md`](scheduling/SCHEDULING.md) for recommended cadences
   and paste-ready task prompts (Dawn ~3-weekly, Jason weekly, Honey weekly, etc.).
