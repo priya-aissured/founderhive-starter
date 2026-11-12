@@ -75,8 +75,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="")
     ap.add_argument("--max", type=int, default=8000)
+    ap.add_argument("--exclude", default="", help="comma-separated folder names / path substrings to skip entirely")
     ap.add_argument("--plan", action="store_true", help="also write a proposed move plan (NOT executed)")
     args = ap.parse_args()
+    excl = {t.strip().lower() for t in args.exclude.split(",") if t.strip()}
 
     root = args.root or read_source_folder()
     if not root:
@@ -88,14 +90,23 @@ def main():
         print(f"WARNING: scanning {root} which overlaps the FounderHive project — results may include the kit itself.", file=sys.stderr)
 
     rows, code_projects, n, truncated = [], [], 0, False
+    def is_excluded(path_obj):
+        if not excl:
+            return False
+        rel = str(path_obj.relative_to(root)).lower()
+        return path_obj.name.lower() in excl or any(tok in rel for tok in excl)
+
     for dirpath, dirnames, filenames in os.walk(root):
         d = Path(dirpath)
+        if is_excluded(d):
+            dirnames[:] = []; continue
         # a code repo / build root → record once as a Code project, don't descend
         if any((d / m).exists() for m in CODE_MARKERS) and d != root:
             code_projects.append(str(d.relative_to(root)))
             dirnames[:] = []       # prune
             continue
-        dirnames[:] = [x for x in dirnames if x not in SKIP_DIRS and not x.startswith(".")]
+        dirnames[:] = [x for x in dirnames if x not in SKIP_DIRS and not x.startswith(".")
+                       and not is_excluded(d / x)]
         for fn in filenames:
             if fn in SKIP_FILES or fn.startswith("."):
                 continue
