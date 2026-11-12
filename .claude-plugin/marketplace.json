@@ -1,0 +1,16 @@
+{
+  "name": "aissured",
+  "description": "FounderHive and other open tools by Priya Lakshmi (AISSURED).",
+  "owner": {
+    "name": "Priya Lakshmi",
+    "url": "https://www.aissured.co.uk"
+  },
+  "plugins": [
+    {
+      "name": "founderhive",
+      "source": "./plugin",
+      "description": "A founder operating system of AI agents \u2014 they draft for your approval, never act externally. Install, then `/founderhive:setup`.",
+      "version": "1.0.0"
+    }
+  ]
+}

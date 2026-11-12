@@ -55,11 +55,42 @@ desktop app's "Code" tab**. Both use the same agent system. You'll need:
 > enough to adapt elsewhere — but the plug-and-play experience and the code-enforced guardrails are
 > designed for Claude Code.
 
+## Install
+
+Two ways — pick one.
+
+### A. As a Claude Code plugin (one command)
+Installs the whole team globally, so you can use it in any folder. In a Claude Code session:
+```text
+/plugin marketplace add priya-aissured/founderhive-starter
+/plugin install founderhive@aissured
+```
+Then, in the folder where you want your company workspace to live, run **`/founderhive:setup`** — it
+scaffolds the config + context templates into that folder and interviews you to fill them in. After that,
+call the team with namespaced commands: `/founderhive:honey`, `/founderhive:max`, … (type `/founderhive` for
+the list). *(Plugin install needs a recent Claude Code; the shell form is
+`claude plugin marketplace add priya-aissured/founderhive-starter && claude plugin install founderhive@aissured`.)*
+
+### B. By cloning this repo
+Get everything in one folder and run Claude Code there. The commands are un-namespaced here — `/honey`,
+`/max`, etc.
+```bash
+git clone https://github.com/priya-aissured/founderhive-starter
+cd founderhive-starter
+pip install -r requirements.txt
+```
+Then follow **Setup** below.
+
+> **Which should I pick?** The plugin is the quickest start and updates with `claude plugin update`. Cloning
+> is best if you want to read, edit or fork the agent definitions. Either way your company data stays in your
+> own folder — nothing is uploaded. The only difference in use is the command prefix (`/founderhive:honey`
+> vs `/honey`).
+
 ## Setup — the easy way
 1. **Prereqs:** Claude Code (CLI or desktop) + Python 3.11+. Install helpers: `pip install -r requirements.txt`.
-2. **Run the setup agent** — open Claude Code in this folder and say *"Use the setup agent."* It interviews
-   you and fills `config.yaml` + `company-context/*` (and GTM basics), reading your company folder to map
-   material. That's the whole setup, guided.
+2. **Run setup** — open Claude Code in your workspace folder. Plugin users: `/founderhive:setup`. Clone
+   users: say *"Use the setup agent."* It interviews you and fills `config.yaml` + `company-context/*` (and
+   GTM basics), reading your company folder to map material. That's the whole setup, guided.
 3. **Check readiness:** `python3 tools/preflight.py` — tells you if anything's still a placeholder.
 
 ### Setup — the manual way (if you prefer)
@@ -87,7 +118,8 @@ samples), plus `company-overview.md`, `knowledge-base.md` (map your folder to th
 ## Guardrails (built in — safe for classroom / shared use)
 
 Every agent carries a **"Shared guardrails"** block (see any file in `.claude/agents/`), and the key rule is
-enforced in code so it can't be talked around. In full:
+enforced in code so it can't be talked around. The full threat model, the code-enforced guarantees, and
+what's still your responsibility are written up in **[`SECURITY.md`](SECURITY.md)**. In brief:
 
 - **Email only ever reaches the configured user — enforced in code.** The delivery tools
   (`tools/deliver.py`, `tools/send_mail_macos.py`) confirm the recipient equals the address in

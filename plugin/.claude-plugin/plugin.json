@@ -1,0 +1,21 @@
+{
+  "name": "founderhive",
+  "version": "1.0.0",
+  "description": "A founder operating system of AI agents \u2014 chief of staff, GTM, content, product, investor relations, CTO, people/legal/finance and a co-founder challenger. They draft for your approval; they never act externally.",
+  "author": {
+    "name": "Priya Lakshmi",
+    "url": "https://www.aissured.co.uk"
+  },
+  "homepage": "https://github.com/priya-aissured/founderhive-starter",
+  "repository": "https://github.com/priya-aissured/founderhive-starter",
+  "license": "MIT",
+  "keywords": [
+    "founder",
+    "startup",
+    "agents",
+    "gtm",
+    "content",
+    "investor",
+    "ai-governance"
+  ]
+}
