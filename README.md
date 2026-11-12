@@ -63,8 +63,11 @@ samples), plus `company-overview.md`, `knowledge-base.md` (map your folder to th
 - **`mail_app`** (macOS only): sends via the Apple Mail app already signed in — no password stored.
 
 ## Using it
-- Ask, e.g. *"Use the Dawn agent to draft a blog on X"*, *"Use Jason to build a target list for segment Y"*,
-  or *"Use Honey to organise my files"* (scans your whole folder and maps it into categories — read-only).
+- **Call a teammate with a slash command** — like talking to a named hire:
+  `/honey run the weekly review` · `/jason build a target list for segment Y` · `/dawn draft a blog on X` ·
+  `/max challenge my pricing` · `/honey organise my files`. Type `/founderhive` to see the whole team.
+  (Each command adopts that agent, does the work, and delivers a draft for your approval.)
+- Or ask in plain language — *"Use the Dawn agent to draft a blog on X."* Both work.
   The agent reads `config.yaml` + `company-context/`, drafts, converts to **Word (.docx)**, and delivers it.
 - **Recurring runs:** see [`scheduling/SCHEDULING.md`](scheduling/SCHEDULING.md) for recommended cadences
   and paste-ready task prompts (Dawn ~3-weekly, Jason weekly, Honey weekly, etc.).
