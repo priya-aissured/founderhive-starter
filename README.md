@@ -21,6 +21,8 @@ markdown definition; your company knowledge is markdown + your existing files; n
 > pricing` or `/dawn draft a blog` and watch it work on real content. `python3 tools/demo.py --restore`
 > puts your own files back. (Everything stays local — nothing is emailed.)
 
+![Demo: the founder types `/max challenge my pricing` and the Co-Founder agent returns a verdict plus the top 3 ranked risks, each with a cheap de-risking test — drafted for approval.](assets/founderhive-demo.gif)
+
 **The core idea:** proactive founder work (thought leadership, pipeline, investor prep) always loses to
 whatever's urgent. The agents *collapse the activation energy* — they produce the 80% draft so the only
 thing left is your quick edit. **They draft; you decide.** No agent sends an email, posts, publishes,
